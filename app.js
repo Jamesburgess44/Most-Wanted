@@ -4,7 +4,8 @@ function searchByName(){
     // Grabbing the values from our nameForm form and inputs.
     let firstNameInput = document.forms['nameForm']['fname'].value;
     let lastNameInput = document.forms['nameForm']['lname'].value;
-   
+    //*** */ make variables for each form value
+    //**add variables to search seperated by OR statements
 
     // "people" is coming from the data.js file. We have access to it within this JavaScript file.
     let filteredPeople = people.filter(function (person) {
@@ -21,6 +22,7 @@ function searchByName(){
         console.log('Sorry, looks like there is no one with that name.');
     }
 }
+
 
 function buildTable(dataBaseOfPeople){
 dataBaseOfPeople.map(function(el){
