@@ -21,8 +21,8 @@ function searchByName(){
     }
 }
 
-function buildTable(){
-people.map(function(el){
+function buildTable(dataBaseOfPeople){
+dataBaseOfPeople.map(function(el){
     document.getElementById("data").innerHTML += `<tr>
     <td id=${el.id} style="color:red">${el.id}</td>
     <td>${el.firstName}</td>
@@ -39,3 +39,5 @@ people.map(function(el){
     </tr>`
 })
 }
+
+
