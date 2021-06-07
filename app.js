@@ -12,8 +12,6 @@ function assignValues(){
     return [firstNameInput, lastNameInput, genderInput, dobInput, heightInput, weightInput, eyeColorInput, occupationInput]
 }
 
-let keywordsExample = ["", "Madden", "male", "" , "70", ""]
-
 function filterDataBase(keywords){
     let keyArrayExample = ["firstName", "lastName", "gender", "dob", "height", "weight", "eyeColor", "occupation"]
     
@@ -40,7 +38,7 @@ function filterDataBase(keywords){
 
 
 function buildTable(dataBaseOfPeople){
-    document.getElementById("data").innerHTML = ""
+    document.getElementById("data").innerHTML = "";
     document.getElementById("tableHead").innerHTML = ` <tr>
     <th>Id</th>
     <th>First Name</th>
@@ -53,7 +51,7 @@ function buildTable(dataBaseOfPeople){
     <th>occupation</th>
     <th>parents</th>
     <th>currentSpouse</th>
-</tr>`
+</tr>`;
 dataBaseOfPeople.map(function(el){
     document.getElementById("data").innerHTML += `<tr>
     <td id=${el.id} style="color:red">${el.id}</td>
@@ -68,16 +66,27 @@ dataBaseOfPeople.map(function(el){
     <td>${el.parents}</td>
     <td>${el.currentSpouse}</td>
     <td><button onclick="descendants()">Descendants</button></td>
-    <td><button onclick="immediateFamily()">Immediate Family</button></td>
+    <td><button onclick="findSiblings(${el.parents, el.id})">Immediate Family</button></td>
     </tr>`
 })
 }
 
 
 
-function findParents(){
+function findSiblings(currentParentsID, currentPersonID){
+    //we want to search through the people database for persons with same parentIDs
+    let siblings = people.filter(function(person){
+        if(currentParentsID == person.parents[0]){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    console.log(siblings);
 
 }
+// console.log(people[10].parents);
 
 
 
