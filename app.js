@@ -57,12 +57,13 @@ function filterDataBase(keywords){
         }
         return false;
     })  
-    console.log(filter);
+    buildTable(filter)
 }
 
 
 
 function buildTable(dataBaseOfPeople){
+    document.getElementById("data").innerHTML = ""
 dataBaseOfPeople.map(function(el){
     document.getElementById("data").innerHTML += `<tr>
     <td id=${el.id} style="color:red">${el.id}</td>
