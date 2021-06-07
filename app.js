@@ -41,6 +41,19 @@ function filterDataBase(keywords){
 
 function buildTable(dataBaseOfPeople){
     document.getElementById("data").innerHTML = ""
+    document.getElementById("tableHead").innerHTML = ` <tr>
+    <th>Id</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>gender</th>
+    <th>dob</th>
+    <th>height</th>
+    <th>weight</th>
+    <th>eyeColor</th>
+    <th>occupation</th>
+    <th>parents</th>
+    <th>currentSpouse</th>
+</tr>`
 dataBaseOfPeople.map(function(el){
     document.getElementById("data").innerHTML += `<tr>
     <td id=${el.id} style="color:red">${el.id}</td>
@@ -60,7 +73,11 @@ dataBaseOfPeople.map(function(el){
 })
 }
 
-//function immediateFamily()
+
+
+function findParents(){
+
+}
 
 
 
