@@ -1,6 +1,10 @@
 'use strict';
 
-function searchByName(){
+
+
+
+
+function assignValues(){
     // Grabbing the values from our nameForm form and inputs.
     let firstNameInput = document.forms['criteriaForm']['fname'].value;
     let lastNameInput = document.forms['criteriaForm']['lname'].value;
@@ -12,8 +16,6 @@ function searchByName(){
     let occupationInput = document.forms['criteriaForm']['occupation'].value;
 
 
-    //*** */ make variables for each form value
-    //**add variables to search seperated by OR statements
 
     // "people" is coming from the data.js file. We have access to it within this JavaScript file.
     let filteredPeople = people.filter(function (person) {
@@ -32,6 +34,31 @@ function searchByName(){
         console.log('Sorry, looks like there is no one with that name.');
     }
 }
+
+let keyword = [firstNameInput, lastNameInput, genderInput, dobInput, heightInput, weightInput, eyeColorInput, occupationInput]
+let keywordsExample = ["", "Madden", "male", "" , "70", ""]
+
+function filterDataBase(keywords){
+    let keyArrayExample = ["firstName", "lastName", "gender", "dob", "height", "weight", "eyeColor", "occupation"]
+    
+    var filter = people.filter(function(person){
+        let didFail = false;
+        for(let i = 0; i < keywords.length; i++){
+            if(keywords[i] != ""){
+                let keyArrIndex = keyArrayExample[i]; //+1 since we arent searching for ID
+                if(keywords[i] != person[`${keyArrIndex}`]){
+                    didFail = true;
+                }
+            }
+        }
+        if(!didFail){
+            return true;
+        }
+        return false;
+    })  
+    console.log(filter);
+}
+console.log(filterDataBase(keywordsExample))
 
 
 function buildTable(dataBaseOfPeople){
