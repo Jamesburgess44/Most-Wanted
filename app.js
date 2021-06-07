@@ -14,6 +14,7 @@ function assignValues(){
     let weightInput = document.forms['criteriaForm']['weight'].value;
     let eyeColorInput = document.forms['criteriaForm']['eyeColor'].value;
     let occupationInput = document.forms['criteriaForm']['occupation'].value;
+    return [firstNameInput, lastNameInput, genderInput, dobInput, heightInput, weightInput, eyeColorInput, occupationInput]
 
 
 
@@ -35,7 +36,7 @@ function assignValues(){
     }
 }
 
-let keyword = [firstNameInput, lastNameInput, genderInput, dobInput, heightInput, weightInput, eyeColorInput, occupationInput]
+
 let keywordsExample = ["", "Madden", "male", "" , "70", ""]
 
 function filterDataBase(keywords){
@@ -58,7 +59,7 @@ function filterDataBase(keywords){
     })  
     console.log(filter);
 }
-console.log(filterDataBase(keywordsExample))
+
 
 
 function buildTable(dataBaseOfPeople){
