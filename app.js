@@ -11,7 +11,6 @@ function assignValues(){
     let occupationInput = document.forms['criteriaForm']['occupation'].value;
     return [firstNameInput, lastNameInput, genderInput, dobInput, heightInput, weightInput, eyeColorInput, occupationInput]
 }
-
 function filterDataBase(keywords){
     let peopleKeys = ["firstName", "lastName", "gender", "dob", "height", "weight", "eyeColor", "occupation"]
     var filter = people.filter(function(person){
@@ -33,7 +32,6 @@ function filterDataBase(keywords){
 }
     buildTable(filter)
 }
-
 
 function buildTable(dataBaseOfPeople){
     document.getElementById("tableBody").innerHTML = "";
@@ -63,12 +61,21 @@ dataBaseOfPeople.map(function(el){
     <td>${el.occupation}</td>
     <td>${el.parents}</td>
     <td>${el.currentSpouse}</td>
-    <td><button onclick="findKids(${people.indexOf(el)})">Descendants</button></td>
-    <td><button onclick="findSiblings(${people.indexOf(el)}),findParents(${people.indexOf(el)}),findSpouse(${people.indexOf(el)})">Immediate Family</button></td>
+    <td><button onclick="builoDescendants(${people.indexOf(el)})">Descendants</button></td>
+    <td><button onclick="buildImmediateFamily(${people.indexOf(el)})">Immediate Family</button></td>
     </tr>`
 })
 }
-
+function builoDescendants(index){
+    descendants =[];
+    findKids(index)
+}
+function buildImmediateFamily(index){
+    immediateFamily = [];
+    findSiblings(index)
+    findParents(index)
+    findSpouse(index)
+}
 let immediateFamily = [];
 
 function findSiblings(personsIndex){
@@ -179,9 +186,7 @@ function findKids(currentPersonIndex){
         }
         
     })
-
     buildSecondaryTable(descendants)
-    
 }
 
 
