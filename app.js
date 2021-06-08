@@ -71,12 +71,24 @@ function buildTable(dataBaseOfPeople){
 function buildDescendants(index){
     descendants =[];
     findKids(index)
+    if(descendants.length > 0){
+        buildSecondaryTable(descendants)
+        }
+        else{
+            window.alert("This person has no descendants");
+        }
 }
 function buildImmediateFamily(index){
     immediateFamily = [];
     findSiblings(index)
     findParents(index)
     findSpouse(index)
+    if(immediateFamily.length > 0){
+        buildSecondaryTable(immediateFamily)
+        }
+        else{
+            window.alert("This person has no immediate family!")
+    }
 }
 let immediateFamily = [];
 let descendants =[];
@@ -126,11 +138,11 @@ function findSpouse(personIndex){
             immediateFamily.push(person)
             return true;
         }
-    else{
-        return false;
-    }
+        else{
+            return false;
+        }
     })
-    buildSecondaryTable(immediateFamily)
+
 }
 
 function buildSecondaryTable(dataBaseOfPeople){
@@ -178,7 +190,6 @@ function findKids(currentPersonIndex){
         }
         
     })
-    buildSecondaryTable(descendants)
 }
 
 
