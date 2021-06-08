@@ -13,13 +13,12 @@ function assignValues(){
 }
 
 function filterDataBase(keywords){
-    let keyArrayExample = ["firstName", "lastName", "gender", "dob", "height", "weight", "eyeColor", "occupation"]
-    
+    let peopleKeys = ["firstName", "lastName", "gender", "dob", "height", "weight", "eyeColor", "occupation"]
     var filter = people.filter(function(person){
         let didFail = false;
         for(let i = 0; i < keywords.length; i++){
             if(keywords[i] != ""){
-                let keyArrIndex = keyArrayExample[i]; //+1 since we arent searching for ID
+                let keyArrIndex = peopleKeys[i];
                 if(keywords[i] != person[`${keyArrIndex}`]){
                     didFail = true;
                 }
@@ -138,31 +137,31 @@ function findSpouse(personIndex){
 function buildSecondaryTable(dataBaseOfPeople){
     document.getElementById("secondTableBody").innerHTML = "";
     document.getElementById("secondTableHead").innerHTML = ` <tr>
-    <th>Id</th>
-    <th>Relationship</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>gender</th>
-    <th>dob</th>
-    <th>height</th>
-    <th>weight</th>
-    <th>eyeColor</th>
-    <th>occupation</th>
-</tr>`;
-dataBaseOfPeople.map(function(el){
-    document.getElementById("secondTableBody").innerHTML += `<tr>
-    <td id=${el.id} style="color:red">${el.id}</td>
-    <td>${el.relationship}</td>
-    <td>${el.firstName}</td>
-    <td>${el.lastName}</td>
-    <td>${el.gender}</td>
-    <td>${el.dob}</td>
-    <td>${el.height}</td>
-    <td>${el.weight}</td>
-    <td>${el.eyeColor}</td>
-    <td>${el.occupation}</td>
-    </tr>`
-})
+        <th>Id</th>
+        <th>Relationship</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>gender</th>
+        <th>dob</th>
+        <th>height</th>
+        <th>weight</th>
+        <th>eyeColor</th>
+        <th>occupation</th>
+        </tr>`;
+    dataBaseOfPeople.map(function(el){
+        document.getElementById("secondTableBody").innerHTML += `<tr>
+        <td id=${el.id} style="color:red">${el.id}</td>
+        <td>${el.relationship}</td>
+        <td>${el.firstName}</td>
+        <td>${el.lastName}</td>
+        <td>${el.gender}</td>
+        <td>${el.dob}</td>
+        <td>${el.height}</td>
+        <td>${el.weight}</td>
+        <td>${el.eyeColor}</td>
+        <td>${el.occupation}</td>
+        </tr>`
+    })
 }
 let descendants =[];
 function findKids(currentPersonIndex){
