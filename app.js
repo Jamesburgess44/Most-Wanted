@@ -65,7 +65,7 @@ dataBaseOfPeople.map(function(el){
     <td>${el.parents}</td>
     <td>${el.currentSpouse}</td>
     <td><button onclick="descendants()">Descendants</button></td>
-    <td><button onclick="findSiblings(${people.indexOf(el)}),findParents(${people.indexOf(el)})">Immediate Family</button></td>
+    <td><button onclick="findSiblings(${people.indexOf(el)}),findParents(${people.indexOf(el)}),findSpouse(${people.indexOf(el)})">Immediate Family</button></td>
     </tr>`
 })
 }
@@ -110,10 +110,23 @@ function findParents(personIndex){
 })
 //console.log(parents);
 immediateFamily.push(parents);
-console.log(immediateFamily)
+//console.log(immediateFamily)
 }
-// console.log(people[10].parents);
 
+function findSpouse(personIndex){
+    let currentPersonSpouse = people[personIndex].currentSpouse;
+    let spouse = people.filter(function(person){
+        if(currentPersonSpouse == person.id){
+            return true;
+        }
+    else{
+        return false;
+    }
+    })
+    //console.log(spouse)
+    immediateFamily.push(spouse)
+    console.log(immediateFamily)
+}
 
 
 
