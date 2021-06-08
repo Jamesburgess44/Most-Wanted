@@ -36,7 +36,6 @@ function filterDataBase(keywords){
 }
 
 
-
 function buildTable(dataBaseOfPeople){
     document.getElementById("data").innerHTML = "";
     document.getElementById("tableHead").innerHTML = ` <tr>
@@ -66,17 +65,19 @@ dataBaseOfPeople.map(function(el){
     <td>${el.parents}</td>
     <td>${el.currentSpouse}</td>
     <td><button onclick="descendants()">Descendants</button></td>
-    <td><button onclick="findSiblings(${el.parents, el.id})">Immediate Family</button></td>
+    <td><button onclick="findSiblings(${people.indexOf(el)})">Immediate Family</button></td>
     </tr>`
 })
 }
 
 
 
-function findSiblings(currentParentsID, currentPersonID){
+function findSiblings(personsIndex){
     //we want to search through the people database for persons with same parentIDs
+    let currentPersonParents = people[personsIndex].parents;
+    let currentPersonID = people[personsIndex].id;
     let siblings = people.filter(function(person){
-        if(currentParentsID == person.parents[0]){
+        if((currentPersonParents[0] == person.parents[0] && currentPersonParents[1] == person.parents[1]) && currentPersonID != person.id){
             return true;
         }
         else{
