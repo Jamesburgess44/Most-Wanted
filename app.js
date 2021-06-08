@@ -49,26 +49,26 @@ function buildTable(dataBaseOfPeople){
     <th>occupation</th>
     <th>parents</th>
     <th>currentSpouse</th>
-</tr>`;
-dataBaseOfPeople.map(function(el){
-    document.getElementById("tableBody").innerHTML += `<tr>
-    <td id=${el.id} style="color:red">${el.id}</td>
-    <td>${el.firstName}</td>
-    <td>${el.lastName}</td>
-    <td>${el.gender}</td>
-    <td>${el.dob}</td>
-    <td>${el.height}</td>
-    <td>${el.weight}</td>
-    <td>${el.eyeColor}</td>
-    <td>${el.occupation}</td>
-    <td>${el.parents}</td>
-    <td>${el.currentSpouse}</td>
-    <td><button onclick="builoDescendants(${people.indexOf(el)})">Descendants</button></td>
-    <td><button onclick="buildImmediateFamily(${people.indexOf(el)})">Immediate Family</button></td>
-    </tr>`
-})
+    </tr>`;
+    dataBaseOfPeople.map(function(el){
+        document.getElementById("tableBody").innerHTML += `<tr>
+        <td id=${el.id} style="color:red">${el.id}</td>
+        <td>${el.firstName}</td>
+        <td>${el.lastName}</td>
+        <td>${el.gender}</td>
+        <td>${el.dob}</td>
+        <td>${el.height}</td>
+        <td>${el.weight}</td>
+        <td>${el.eyeColor}</td>
+        <td>${el.occupation}</td>
+        <td>${el.parents}</td>
+        <td>${el.currentSpouse}</td>
+        <td><button onclick="buildDescendants(${people.indexOf(el)})">Descendants</button></td>                 
+        <td><button onclick="buildImmediateFamily(${people.indexOf(el)})">Immediate Family</button></td>
+        </tr>`
+    })
 }
-function builoDescendants(index){
+function buildDescendants(index){
     descendants =[];
     findKids(index)
 }
@@ -79,13 +79,13 @@ function buildImmediateFamily(index){
     findSpouse(index)
 }
 let immediateFamily = [];
+let descendants =[];
 
 function findSiblings(personsIndex){
     //we want to search through the people database for persons with same parentIDs
     
     let currentPersonParents = people[personsIndex].parents;
     let currentPersonID = people[personsIndex].id;
-    //console.log(currentPersonParents);
     if(currentPersonParents.length == 0){
         console.log("no parents");
         return false;
@@ -101,15 +101,11 @@ function findSiblings(personsIndex){
                 return false;
             }
         })
-        //immediateFamily.push(siblings);
-        //console.log(siblings);
-        //console.log(immediateFamily)
     }   
 }
 
 function findParents(personIndex){
     let currentPersonParents = people[personIndex].parents;
-    let currentPersonID = people[personIndex].id
     let parents = people.filter(function(person){
         if(currentPersonParents[0] == person.id || currentPersonParents[1] == person.id){
             person.relationship = "Parent";
@@ -120,9 +116,6 @@ function findParents(personIndex){
         return false;
     }
 })
-//console.log(parents);
-//immediateFamily.push(parents);
-//console.log(immediateFamily)
 }
 
 function findSpouse(personIndex){
@@ -137,9 +130,6 @@ function findSpouse(personIndex){
         return false;
     }
     })
-    //console.log(spouse)
-    //immediateFamily.push(spouse)
-    //console.log(immediateFamily)
     buildSecondaryTable(immediateFamily)
 }
 
@@ -172,7 +162,7 @@ function buildSecondaryTable(dataBaseOfPeople){
         </tr>`
     })
 }
-let descendants =[];
+
 function findKids(currentPersonIndex){
     //search database for this persons ID under each other persons parent property
     let currentPersonID = people[currentPersonIndex].id;
