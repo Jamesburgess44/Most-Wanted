@@ -11,7 +11,6 @@ function assignValues(){
     let occupationInput = document.forms['criteriaForm']['occupation'].value;
     return [firstNameInput, lastNameInput, genderInput, dobInput, heightInput, weightInput, eyeColorInput, occupationInput]
 }
-
 function filterDataBase(keywords){
     let keyArrayExample = ["firstName", "lastName", "gender", "dob", "height", "weight", "eyeColor", "occupation"]
     
@@ -34,7 +33,6 @@ function filterDataBase(keywords){
 }
     buildTable(filter)
 }
-
 
 function buildTable(dataBaseOfPeople){
     document.getElementById("tableBody").innerHTML = "";
