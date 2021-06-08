@@ -64,7 +64,7 @@ dataBaseOfPeople.map(function(el){
     <td>${el.occupation}</td>
     <td>${el.parents}</td>
     <td>${el.currentSpouse}</td>
-    <td><button onclick="descendants()">Descendants</button></td>
+    <td><button onclick="findKids(${people.indexOf(el)})">Descendants</button></td>
     <td><button onclick="findSiblings(${people.indexOf(el)}),findParents(${people.indexOf(el)}),findSpouse(${people.indexOf(el)})">Immediate Family</button></td>
     </tr>`
 })
@@ -132,10 +132,10 @@ function findSpouse(personIndex){
     //console.log(spouse)
     //immediateFamily.push(spouse)
     //console.log(immediateFamily)
-    buildImmediateFamilyTable(immediateFamily)
+    buildSecondaryTable(immediateFamily)
 }
 
-function buildImmediateFamilyTable(dataBaseOfPeople){
+function buildSecondaryTable(dataBaseOfPeople){
     document.getElementById("secondTableBody").innerHTML = "";
     document.getElementById("secondTableHead").innerHTML = ` <tr>
     <th>Id</th>
@@ -148,8 +148,6 @@ function buildImmediateFamilyTable(dataBaseOfPeople){
     <th>weight</th>
     <th>eyeColor</th>
     <th>occupation</th>
-    <th>parents</th>
-    <th>currentSpouse</th>
 </tr>`;
 dataBaseOfPeople.map(function(el){
     document.getElementById("secondTableBody").innerHTML += `<tr>
@@ -163,13 +161,28 @@ dataBaseOfPeople.map(function(el){
     <td>${el.weight}</td>
     <td>${el.eyeColor}</td>
     <td>${el.occupation}</td>
-    <td>${el.parents}</td>
-    <td>${el.currentSpouse}</td>
-    <td><button onclick="descendants()">Descendants</button></td>
-    <td><button onclick="findSiblings(${people.indexOf(el)}),findParents(${people.indexOf(el)}),findSpouse(${people.indexOf(el)})">Immediate Family</button></td>
     </tr>`
 })
 }
+let descendants =[];
+function findKids(currentPersonIndex){
+    //search database for this persons ID under each other persons parent property
+    let currentPersonID = people[currentPersonIndex].id;
+    let kids = people.filter(function (person){
+        if(currentPersonID == person.parents[0] || currentPersonID == person.parents[1]){
+            person.relationship = "Descendant";
+            descendants.push(person);
+            findKids(people.indexOf(person))
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+    })
+
+    buildSecondaryTable(descendants)
+    
+}
 
 
-//function descendants()
