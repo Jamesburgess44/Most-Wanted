@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="stylepage.css" />
+    <link rel="stylesheet" href="stylesheet.css" />
     <meta charset="utf-8">
     <title>devCodeCamp &middot; Most Wanted</title>
   </head>
   <body>
+    <p id=mostWanted>Most Wanted</p>
     <form id="criteriaForm">
         <label for="fname">First name:</label><br>
         <input type="text" id="fname" name="fname" value=""><br>
@@ -24,14 +25,14 @@
         <label for="occupation">Occupation:</label><br>
         <input type="text" id="occupation" name="occupation" value=""><br>
         
-
-        <input type="button" onclick="filterDataBase(assignValues())" value="Submit">
+        
+        <input class="button" type="button" onclick="filterDataBase(assignValues())" value="Submit">
         <!-- Not sure how to get above line to work -->
     </form> 
 
     <button onclick="buildTable(people)">See all people!</button>
     
-<table>
+<table id=tableOne>
     <thead id="tableHead">
     </thead>
     <tbody id="tableBody">
@@ -39,13 +40,11 @@
 </table>
 <br>
 <br>
-<table>
+<table id=tableTwo>
   <thead id ="secondTableHead"></thead>
   <tbody id="secondTableBody"></tbody>
 </table>
-      
-
-    <script src="data.js"></script>
-    <script src="app.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
   </body>
 </html>

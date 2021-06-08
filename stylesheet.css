@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #2469f3;
+    color: white;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#mostWanted{
+    font-size: 65px;
+}
+#tableHead{
+border-collapse: collapse;
+width:90%;
+}
+#tableOne{
+    margin-top: 50px;
+}
+#tableTwo{
+    margin-top: 50px;
+}
+button,.button {
+    background-color: rgb(47, 47, 194);
+    border: black;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+#tableOne th,#tableTwo th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #3634c7;
+    color: white;
+}
