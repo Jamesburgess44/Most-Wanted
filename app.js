@@ -1,6 +1,6 @@
 'use strict';
 function assignValues(){
-    // Grabbing the values from our nameForm form and inputs.
+    // Grabbing the values from our nameForm form and inputs to use in the filterDataBase
     let firstNameInput = document.forms['criteriaForm']['fname'].value;
     let lastNameInput = document.forms['criteriaForm']['lname'].value;
     let genderInput = document.forms['criteriaForm']['gender'].value;
@@ -12,25 +12,27 @@ function assignValues(){
     return [firstNameInput, lastNameInput, genderInput, dobInput, heightInput, weightInput, eyeColorInput, occupationInput]
 }
 function filterDataBase(keywords){
-    let peopleKeys = ["firstName", "lastName", "gender", "dob", "height", "weight", "eyeColor", "occupation"]
-    var filter = people.filter(function(person){
-        let didFail = false;
-        for(let i = 0; i < keywords.length; i++){
-            if(keywords[i] != ""){
-                let keyArrIndex = peopleKeys[i];
-                if(keywords[i] != person[`${keyArrIndex}`]){
-                    didFail = true;
-                }
-            }
+    //we want to take in all the form values that the use inputs then filter the database using each of the values that the user inputs
+    let peopleKeys = ["firstName", "lastName", "gender", "dob", "height", "weight", "eyeColor", "occupation"] //these are the Keys in data.js that we want to search through
+    var filteredPeople = people.filter(function (person) {
+      let didFail = false; //use this flag to stop from returning too early. needed to make sure database is filtered multiple times
+      for (let i = 0; i < keywords.length; i++) {
+        if (keywords[i] != "") {
+          let keyArrIndex = peopleKeys[i];
+          if (keywords[i] != person[`${keyArrIndex}`]) {
+            didFail = true;
+          }
         }
-        if(!didFail){
-            return true;
-        }
-        return false;
-    }) 
-    if(filter.length == 0) {window.alert("Invalid Search Criterion")
-}
-    buildTable(filter)
+      }
+      if (!didFail) {
+        return true;
+      }
+      return false;
+    });
+    if (filteredPeople.length == 0) {
+      window.alert("Invalid Search Criterion");
+    }
+    buildTable(filteredPeople);
 }
 
 function buildTable(dataBaseOfPeople){
