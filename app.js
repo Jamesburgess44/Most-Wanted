@@ -74,17 +74,25 @@ dataBaseOfPeople.map(function(el){
 
 function findSiblings(personsIndex){
     //we want to search through the people database for persons with same parentIDs
+    
     let currentPersonParents = people[personsIndex].parents;
     let currentPersonID = people[personsIndex].id;
-    let siblings = people.filter(function(person){
-        if((currentPersonParents[0] == person.parents[0] && currentPersonParents[1] == person.parents[1]) && currentPersonID != person.id){
-            return true;
-        }
-        else{
-            return false;
-        }
-    })
-    console.log(siblings);
+    console.log(currentPersonParents);
+    if(currentPersonParents.length == 0){
+        console.log("no parents");
+        return false;
+    }
+    else{
+        let siblings = people.filter(function(person){
+            if((currentPersonParents[0] == person.parents[0] && currentPersonParents[1] == person.parents[1]) && currentPersonID != person.id){
+                return true;
+            }
+            else{
+                return false;
+            }
+        })
+    }   
+    // console.log(siblings);
 
 }
 // console.log(people[10].parents);
