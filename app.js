@@ -65,19 +65,19 @@ dataBaseOfPeople.map(function(el){
     <td>${el.parents}</td>
     <td>${el.currentSpouse}</td>
     <td><button onclick="descendants()">Descendants</button></td>
-    <td><button onclick="findSiblings(${people.indexOf(el)})">Immediate Family</button></td>
+    <td><button onclick="findSiblings(${people.indexOf(el)}),findParents(${people.indexOf(el)})">Immediate Family</button></td>
     </tr>`
 })
 }
 
-
+let immediateFamily = [];
 
 function findSiblings(personsIndex){
     //we want to search through the people database for persons with same parentIDs
     
     let currentPersonParents = people[personsIndex].parents;
     let currentPersonID = people[personsIndex].id;
-    console.log(currentPersonParents);
+    //console.log(currentPersonParents);
     if(currentPersonParents.length == 0){
         console.log("no parents");
         return false;
@@ -91,12 +91,28 @@ function findSiblings(personsIndex){
                 return false;
             }
         })
+        immediateFamily.push(siblings);
+        //console.log(siblings);
+        //console.log(immediateFamily)
     }   
-    // console.log(siblings);
+}
 
+function findParents(personIndex){
+    let currentPersonParents = people[personIndex].parents;
+    let currentPersonID = people[personIndex].id
+    let parents = people.filter(function(person){
+        if(currentPersonParents[0] == person.id || currentPersonParents[1] == person.id){
+        return true;
+    }
+    else{
+        return false;
+    }
+})
+//console.log(parents);
+immediateFamily.push(parents);
+console.log(immediateFamily)
 }
 // console.log(people[10].parents);
-
 
 
 
