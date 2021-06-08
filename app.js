@@ -85,6 +85,7 @@ function findSiblings(personsIndex){
     else{
         let siblings = people.filter(function(person){
             if((currentPersonParents[0] == person.parents[0] && currentPersonParents[1] == person.parents[1]) && currentPersonID != person.id){
+                person.relationship = "Sibling";
                 immediateFamily.push(person)
                 return true;
             }
@@ -103,6 +104,7 @@ function findParents(personIndex){
     let currentPersonID = people[personIndex].id
     let parents = people.filter(function(person){
         if(currentPersonParents[0] == person.id || currentPersonParents[1] == person.id){
+            person.relationship = "Parent";
             immediateFamily.push(person)
         return true;
     }
@@ -119,6 +121,7 @@ function findSpouse(personIndex){
     let currentPersonSpouse = people[personIndex].currentSpouse;
     let spouse = people.filter(function(person){
         if(currentPersonSpouse == person.id){
+            person.relationship = "Spouse";
             immediateFamily.push(person)
             return true;
         }
@@ -136,6 +139,7 @@ function buildImmediateFamilyTable(dataBaseOfPeople){
     document.getElementById("secondTableBody").innerHTML = "";
     document.getElementById("secondTableHead").innerHTML = ` <tr>
     <th>Id</th>
+    <th>Relationship</th>
     <th>First Name</th>
     <th>Last Name</th>
     <th>gender</th>
@@ -150,6 +154,7 @@ function buildImmediateFamilyTable(dataBaseOfPeople){
 dataBaseOfPeople.map(function(el){
     document.getElementById("secondTableBody").innerHTML += `<tr>
     <td id=${el.id} style="color:red">${el.id}</td>
+    <td>${el.relationship}</td>
     <td>${el.firstName}</td>
     <td>${el.lastName}</td>
     <td>${el.gender}</td>
