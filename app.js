@@ -4,13 +4,28 @@ function assignValues(){
     let firstNameInput = document.forms['criteriaForm']['fname'].value;
     let lastNameInput = document.forms['criteriaForm']['lname'].value;
     let genderInput = document.forms['criteriaForm']['gender'].value;
-    let dobInput = document.forms['criteriaForm']['dob'].value;
+    let dobInput = fixDateInput(document.forms['criteriaForm']['dob'].value);
     let heightInput = document.forms['criteriaForm']['height'].value;
     let weightInput = document.forms['criteriaForm']['weight'].value;
     let eyeColorInput = document.forms['criteriaForm']['eyeColor'].value;
     let occupationInput = document.forms['criteriaForm']['occupation'].value;
-    return [firstNameInput, lastNameInput, genderInput, dobInput, heightInput, weightInput, eyeColorInput, occupationInput]
+    return [inputCasing(firstNameInput), inputCasing(lastNameInput), genderInput.toLowerCase(), dobInput, heightInput, weightInput, eyeColorInput.toLowerCase(), occupationInput.toLowerCase()]
 }
+function inputCasing(string){
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
+
+//to fix date input to 
+function fixDateInput(date){
+    if(date[3] == "0"){
+        date = date.slice(0, 3) + date.slice(4)
+    }
+    if(date[0] == "0"){
+        date = date.slice(1)
+    }
+    return date;
+}
+
 function filterDataBase(keywords){
     //we want to take in all the form values that the use inputs then filter the database using each of the values that the user inputs
     let peopleKeys = ["firstName", "lastName", "gender", "dob", "height", "weight", "eyeColor", "occupation"] //these are the Keys in data.js that we want to search through
@@ -47,8 +62,6 @@ function buildTable(dataBaseOfPeople){
     <th>weight</th>
     <th>eyeColor</th>
     <th>occupation</th>
-    <th>parents</th>
-    <th>currentSpouse</th>
     </tr>`;
     dataBaseOfPeople.map(function(el){
         document.getElementById("tableBody").innerHTML += `<tr>
@@ -61,8 +74,6 @@ function buildTable(dataBaseOfPeople){
         <td>${el.weight}</td>
         <td>${el.eyeColor}</td>
         <td>${el.occupation}</td>
-        <td>${el.parents}</td>
-        <td>${el.currentSpouse}</td>
         <td><button onclick="buildDescendants(${people.indexOf(el)})">Descendants</button></td>                 
         <td><button onclick="buildImmediateFamily(${people.indexOf(el)})">Immediate Family</button></td>
         </tr>`
