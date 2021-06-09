@@ -53,19 +53,17 @@ function filterDataBase(keywords){
 function buildTable(dataBaseOfPeople){
     document.getElementById("tableBody").innerHTML = "";
     document.getElementById("tableHead").innerHTML = ` <tr>
-    <th>Id</th>
     <th>First Name</th>
     <th>Last Name</th>
-    <th>gender</th>
-    <th>dob</th>
-    <th>height</th>
-    <th>weight</th>
-    <th>eyeColor</th>
-    <th>occupation</th>
+    <th>Gender</th>
+    <th>DOB</th>
+    <th>Height</th>
+    <th>Weight</th>
+    <th>Eye Color</th>
+    <th>Occupation</th>
     </tr>`;
     dataBaseOfPeople.map(function(el){
         document.getElementById("tableBody").innerHTML += `<tr>
-        <td>${el.id}</td>
         <td>${el.firstName}</td>
         <td>${el.lastName}</td>
         <td>${el.gender}</td>
@@ -159,20 +157,18 @@ function findSpouse(personIndex){
 function buildSecondaryTable(dataBaseOfPeople){
     document.getElementById("secondTableBody").innerHTML = "";
     document.getElementById("secondTableHead").innerHTML = ` <tr>
-        <th>Id</th>
         <th>Relationship</th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>gender</th>
-        <th>dob</th>
-        <th>height</th>
-        <th>weight</th>
-        <th>eyeColor</th>
-        <th>occupation</th>
+        <th>Gender</th>
+        <th>Dob</th>
+        <th>Height</th>
+        <th>Weight</th>
+        <th>Eye Color</th>
+        <th>Occupation</th>
         </tr>`;
     dataBaseOfPeople.map(function(el){
         document.getElementById("secondTableBody").innerHTML += `<tr>
-        <td>${el.id}</td>
         <td>${el.relationship}</td>
         <td>${el.firstName}</td>
         <td>${el.lastName}</td>
