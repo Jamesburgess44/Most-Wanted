@@ -52,7 +52,7 @@ function buildTable(dataBaseOfPeople){
     </tr>`;
     dataBaseOfPeople.map(function(el){
         document.getElementById("tableBody").innerHTML += `<tr>
-        <td id=${el.id} style="color:red">${el.id}</td>
+        <td>${el.id}</td>
         <td>${el.firstName}</td>
         <td>${el.lastName}</td>
         <td>${el.gender}</td>
@@ -161,7 +161,7 @@ function buildSecondaryTable(dataBaseOfPeople){
         </tr>`;
     dataBaseOfPeople.map(function(el){
         document.getElementById("secondTableBody").innerHTML += `<tr>
-        <td id=${el.id} style="color:red">${el.id}</td>
+        <td>${el.id}</td>
         <td>${el.relationship}</td>
         <td>${el.firstName}</td>
         <td>${el.lastName}</td>
